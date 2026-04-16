@@ -1,0 +1,69 @@
+# -----------------------------
+# OS / Editor
+# -----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.idea/
+.vscode/
+*.code-workspace
+
+# -----------------------------
+# Python cache / build
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.venv/
+venv/
+env/
+ENV/
+doc_qa_api/
+
+# -----------------------------
+# Secrets / local config
+# -----------------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------------
+# Logs / temp files
+# -----------------------------
+*.log
+logs/
+tmp/
+temp/
+
+# -----------------------------
+# Project runtime data (RAG)
+# -----------------------------
+data/raw/
+data/chroma/
+data/chunks.jsonl
+data/**/*.sqlite3
+data/**/*.bin
+
+# Keep folder structure if needed
+!data/.gitkeep
+!data/raw/.gitkeep
+!data/chroma/.gitkeep
+
