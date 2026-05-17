@@ -4,12 +4,16 @@ from pydantic import BaseModel, Field
 
 
 class AskRequest(BaseModel):
-    session_id: str = Field(..., description="会话ID")
-    question: str = Field(..., min_length=1, description="用户问题")
-    k: int = Field(default=4, ge=1, le=10, description="检索返回的文档数")
+    session_id: str = Field(..., description="Session ID")
+    question: str = Field(..., min_length=1, description="User question")
+    k: int = Field(default=4, ge=1, le=10, description="Number of documents to retrieve")
+    debug: bool = Field(
+        default=False,
+        description="If true, return retrieval trace information for debugging.",
+    )
     source_file: str | None = Field(
         default=None,
-        description="可选：指定只在该文档内检索（例如 paper.pdf）",
+        description="Optional: restrict retrieval to one file, for example paper.pdf",
     )
 
 
@@ -24,3 +28,4 @@ class AskResponse(BaseModel):
     answer: str
     retrieved_count: int
     sources: list[dict[str, Any]]
+    debug_info: dict[str, Any] | None = None

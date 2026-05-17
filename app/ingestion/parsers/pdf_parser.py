@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from pathlib import Path
 
@@ -97,7 +97,11 @@ class PDFStructuredParser(BaseParser):
             from unstructured.partition.pdf import partition_pdf
 
             meta.extra["partition_backend"] = "partition_pdf"
-            return partition_pdf(filename=filename)
+            return partition_pdf(
+                filename=filename,
+                strategy="hi_res", # 强制高精度视觉解析
+                infer_table_structure=True, # 提取表格结构
+            )
 
         if ext in {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".gif"}:
             from unstructured.partition.image import partition_image

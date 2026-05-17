@@ -16,6 +16,7 @@ def ask(payload: AskRequest, request: Request):
             "session_id": payload.session_id,
             "question": payload.question,
             "k": payload.k,
+            "debug": payload.debug,
             "source_file": payload.source_file,
         },
         config={
@@ -31,6 +32,7 @@ def ask(payload: AskRequest, request: Request):
             answer=result["answer"],
             retrieved_count=len(result.get("retrieved_docs", [])),
             sources=result.get("sources", []),
+            debug_info=result.get("debug_info"),
         ),
         message=""
     )

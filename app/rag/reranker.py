@@ -1,6 +1,7 @@
 import cohere
 from dotenv import load_dotenv
 import os
+from llama_index.core.schema import NodeWithScore
 
 load_dotenv()
 
@@ -8,9 +9,16 @@ load_dotenv()
 api_key = os.getenv("COHERE_API_KEY")
 co = cohere.Client(api_key)
 
-def rerank_documents(query, docs, top_n=4):
+def _node_text(item: NodeWithScore) -> str:
+    node = item.node
+    return getattr(node, "text", None) or node.get_content()
 
-    texts = [doc.page_content for doc in docs]
+
+def rerank_documents(query: str, docs: list[NodeWithScore], top_n: int = 4) -> list[NodeWithScore]:
+    if not docs:
+        return []
+
+    texts = [_node_text(doc) for doc in docs]
 
     response = co.rerank(
         query=query,

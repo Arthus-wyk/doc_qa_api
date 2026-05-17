@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from app.ingestion.models import DocumentMeta
 from app.ingestion.parsers.base import BaseParser
+from app.ingestion.parsers.academic_pdf_parser import AcademicPDFParser
 from app.ingestion.parsers.pdf_parser import PDFStructuredParser
 from app.ingestion.parsers.markdown_parser import MarkdownParser
 from app.ingestion.parsers.csv_parser import CSVTableParser
@@ -14,7 +15,8 @@ class ParserRouter:
     def __init__(self) -> None:
         # 具体解析器放在前面，通用兜底解析器放在最后。
         self.parsers: list[BaseParser] = [
-            PDFStructuredParser(),
+            AcademicPDFParser(),
+            # PDFStructuredParser(),
             MarkdownParser(),
             CSVTableParser(),
             TextParser(),

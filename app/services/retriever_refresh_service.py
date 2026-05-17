@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
 from app.core.graph import build_qa_graph
+from app.ingestion.chunk_store import load_chunks_from_store
 from app.rag.bm25 import get_bm25_retriever
-from app.services.ingest_service import load_chunks_from_store
 
 
 def refresh_qa_retrievers(app: FastAPI):
